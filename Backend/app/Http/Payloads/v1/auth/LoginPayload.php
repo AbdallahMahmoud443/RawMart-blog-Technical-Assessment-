@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Payloads\v1\auth;
+namespace App\Http\payloads\v1\auth;
 
 use Illuminate\Http\UploadedFile;
 

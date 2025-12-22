@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests\v1\auth;
 
+use App\Http\payloads\v1\auth\SignupPayload;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Payloads\v1\auth\SignupPayload;
+
 
 class SignupRequest extends FormRequest
 {

@@ -2,7 +2,7 @@
 
 namespace App\Actions\Auth;
 
-use App\Payloads\v1\auth\LoginPayload;
+use App\Http\payloads\v1\auth\LoginPayload;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Log;
 
