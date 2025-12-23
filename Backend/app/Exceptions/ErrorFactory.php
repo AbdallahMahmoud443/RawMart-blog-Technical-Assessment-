@@ -37,7 +37,7 @@ class ErrorFactory
         } elseif ($e instanceof AuthenticationException) {
             return  new ErrorResponse(
                 title: "Authentication failed",
-                detail: "Your authentication credentials are invalid or have expired.",
+                detail: $e->getMessage(),
                 instance: $request->path(),
                 code: "AUTHENTICATION_FAILED",
                 link: "http://hyatt-api.test/api/v1/errors/401",
