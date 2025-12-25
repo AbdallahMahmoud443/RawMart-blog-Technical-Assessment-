@@ -1,22 +1,8 @@
 # Blog Platform API
 
-<p align="center">
-  <a href="https://laravel.com" target="_blank">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-  </a>
-</p>
+![](C:\laragon\www\blog-system\images\6903464216718ad4aeb631.webp)
 
-<p align="center">
-  <a href="https://github.com/laravel/framework/actions">
-    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status">
-  </a>
-  <a href="https://packagist.org/packages/laravel/framework">
-    <img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version">
-  </a>
-  <a href="https://packagist.org/packages/laravel/framework">
-    <img src="https://img.shields.io/packagist/l/laravel/framework" alt="License">
-  </a>
-</p>
+
 
 ## Project Idea
 
@@ -24,10 +10,10 @@ Blog Platform API is a robust backend system designed to provide a scalable foun
 
 The main goals of this project are:
 
--   Deliver a clean, maintainable API architecture that can handle high traffic
--   Provide secure authentication and authorization for users
--   Enable efficient content management with proper relationships between posts, tags, and comments
--   Implement a scalable architecture that can be extended with additional features
+- Deliver a clean, maintainable API architecture that can handle high traffic
+- Provide secure authentication and authorization for users
+- Enable efficient content management with proper relationships between posts, tags, and comments
+- Implement a scalable architecture that can be extended with additional features
 
 This is a REST API backend that serves as the core engine for blog platforms, supporting frontend applications and mobile clients.
 
@@ -62,11 +48,11 @@ Service classes contain business logic that doesn't naturally fit into a single 
 
 ### Additional Patterns
 
--   **Repository Pattern**: Used for data access abstraction (implemented through Eloquent)
--   **DTO (Data Transfer Object)**: Request classes validate and transform incoming data
--   **Policy Pattern**: Authorization logic is encapsulated in Policy classes
--   **Factory Pattern**: Used for creating test data and complex objects
--   **Resource Pattern**: API responses are transformed using Resource classes
+- **Repository Pattern**: Used for data access abstraction (implemented through Eloquent)
+- **DTO (Data Transfer Object)**: Request classes validate and transform incoming data
+- **Policy Pattern**: Authorization logic is encapsulated in Policy classes
+- **Factory Pattern**: Used for creating test data and complex objects
+- **Resource Pattern**: API responses are transformed using Resource classes
 
 ## Advantages of Using Action & Service Patterns
 
@@ -142,42 +128,44 @@ Backend/
 
 ### Backend Framework
 
--   **Laravel 12**: Modern PHP framework with expressive syntax and powerful features
--   **PHP 8.2+**: Latest PHP version with improved performance and features
+- **Laravel 12**: Modern PHP framework with expressive syntax and powerful features
+- **PHP 8.2+**: Latest PHP version with improved performance and features
 
 ### Authentication
 
--   **JWT Authentication**: Stateless authentication using tymon/jwt-auth
--   **Policies**: Fine-grained authorization through Laravel's Policy system
+- **JWT Authentication**: Stateless authentication using tymon/jwt-auth
+- **Policies**: Fine-grained authorization through Laravel's Policy system
 
 ### Database
 
--   **MySQL**: Primary relational database
--   **Eloquent ORM**: Laravel's powerful ActiveRecord implementation
--   **Migrations**: Version-controlled database schema management
+- **MySQL**: Primary relational database
+- **Eloquent ORM**: Laravel's powerful ActiveRecord implementation
+- **Migrations**: Version-controlled database schema management
 
 ### Cache & Queue
 
--   **Redis**: High-performance caching and queue backend
--   **Predis**: PHP Redis client
+- **Redis**: High-performance caching and queue backend
+- **Predis**: PHP Redis client
 
 ### Testing
 
--   **PHPUnit**: Feature and unit testing framework
--   **Factories**: Test data generation
--   **Feature Tests**: End-to-end API testing
+- **PHPUnit**: Feature and unit testing framework
+- **Factories**: Test data generation
+- **Feature Tests**: End-to-end API testing
+
+![](C:\laragon\www\blog-system\images\testing.PNG)
 
 ### DevOps / Tools
 
--   **Composer**: PHP dependency management
--   **Laravel Pint**: Code style fixing
--   **Dedoc Scramble**: Automatic API documentation generation
+- **Composer**: PHP dependency management
+- **Laravel Pint**: Code style fixing
+- **Dedoc Scramble**: Automatic API documentation generation
 
 ## API Endpoints
 
 The API is organized into versioned endpoints following RESTful conventions. All API endpoints are prefixed with `/api/v1`.
 
-#### ![](C:\laragon\www\blog-system\images\api_documentation.PNG)
+![](C:\laragon\www\blog-system\images\API_Docs.png)
 
 ### Authentication Endpoints
 
@@ -229,11 +217,11 @@ All API responses follow a consistent JSON format:
 
 ```json
 {
-    "success": true,
-    "data": {
-        // Response data
-    },
-    "message": "Operation successful"
+  "success": true,
+  "data": {
+    // Response data
+  },
+  "message": "Operation successful"
 }
 ```
 
@@ -254,11 +242,11 @@ All API responses follow a consistent JSON format:
 
 ### Prerequisites
 
--   PHP 8.2 or higher
--   Composer
--   MySQL
--   Redis
--   Node.js and NPM (for asset compilation)
+- PHP 8.2 or higher
+- Composer
+- MySQL
+- Redis
+- Node.js and NPM (for asset compilation)
 
 ### Installation Steps
 
@@ -312,18 +300,14 @@ php artisan serve
 2. To run the queue worker:
 
 ```bash
-php php artisan schedule:work
+php artisan queue:work
 ```
 
-3. To run the schedule:
+3. For development with hot reloading:
 
-````bash
-php artisan queue:work redis
-
-4. For development with hot reloading:
 ```bash
 composer run dev
-````
+```
 
 ### Commands to Run Tests
 
@@ -370,3 +354,137 @@ php artisan config:clear
 php artisan cache:clear
 php artisan route:clear
 ```
+
+# Rawmart Blog Frontend
+
+![](C:\laragon\www\blog-system\images\Home Page.png)
+
+A modern, developer-friendly React SPA for blogging, built with Vite. It provides authenticated post creation and discussion with clean UX, route guards, and robust client-side error handling.
+
+## Project Idea
+
+- Solves the need for a simple, fast blog UI that supports secure authoring and community comments.
+- Goals: smooth authenticated UX, resilient data fetching, clear post lifecycle, and maintainable architecture.
+- Core features:
+  - JWT-based login and signup
+  - Posts CRUD with tags and 24h expiration indicator
+  - Comment add/update/delete with owner controls
+  - Protected routes for create/edit
+  - Client-side routing and error pages (404, 500)
+
+## Architecture
+
+- SPA built on React 18 + React Router 6 with a top-level `Layout` and nested routes (`src/routes/index.jsx:16-37`).
+- Authentication state via a Provider pattern (`src/context/AuthContext.jsx:6-97`) consuming a service layer (`src/services/auth.js:3-15`).
+- HTTP client is a configured Axios instance (`src/config/axis.config.js:5-12`) with request/response interceptors for:
+  - Attaching `Authorization` header except on auth endpoints (`src/config/axis.config.js:13-21`).
+  - Redirecting on `401` to `/login`, `404` to `/404` for GETs, and `5xx` to `/500` (`src/config/axis.config.js:25-52`).
+- Data layer uses React Query for caching and mutations with domain hooks:
+  - Posts: `useGetPosts`, `useGetPost`, `useCreatePost`, `useUpdatePost`, `useDeletePost` under `src/hooks/posts/`.
+  - Comments: `useCreateComment`, `useUpdateComment`, `useDeleteComment` under `src/hooks/comments/`.
+- Route guard (`src/components/ProtectedRoute.jsx:4-17`) protects create/edit flows.
+- UI composition uses feature components (e.g., `Navbar`, `PostItem`, `Comments`) and pages under `src/pages/`.
+- Design patterns:
+  - Provider pattern for auth
+  - Service layer abstraction for API modules
+  - Domain-specific hooks wrapping queries/mutations
+  - Route guard component for access control
+  - Request/response interceptor for cross-cutting concerns
+
+## Folder Structure
+
+```
+.
+├─ src/
+│  ├─ components/           # Reusable UI (layout, navbar, footer, post/comment items, guards)
+│  ├─ config/               # Axios client configuration and interceptors
+│  ├─ context/              # Auth provider and hook
+│  ├─ hooks/                # React Query hooks by domain (posts, comments)
+│  ├─ pages/                # Route pages (landing, auth, posts, errors)
+│  ├─ routes/               # App routing
+│  ├─ services/             # API modules (auth, posts, comments, tags)
+│  ├─ utils/                # Small utilities (form helpers, image URL)
+│  ├─ App.jsx               # Root composition (Router + Providers)
+│  ├─ main.jsx              # App mount and QueryClient setup
+│  └─ index.css             # Global styles
+├─ .env.example             # Environment example with API base URL
+├─ vite.config.js           # Vite configuration
+├─ package.json             # Scripts and dependencies
+└─ dist/                    # Production build output (after `npm run build`)
+```
+
+## Tech Stack
+
+- Frontend:
+  - React 18, Vite 5
+  - React Router 6
+  - TanStack React Query 5
+  - Axios
+  - React Hook Form
+  - React Hot Toast
+  - date-fns (optional utilities)
+- Backend API (assumed):
+  - REST API at `VITE_API_URL` with endpoints:
+    - `/auth/login`, `/auth/signup`
+    - `/posts/`, `/posts/create`, `/posts/update/:id`, `/posts/delete/:id`
+    - `/comments/`, `/comments/update/:id`, `/comments/delete/:id`
+  - Returns JWT access tokens and post resources with `expire_date`
+- Tooling:
+  - ESLint
+  - `@vitejs/plugin-react`
+
+## User Interface
+
+![](C:\laragon\www\blog-system\images\Register With Validation.png)
+
+![](C:\laragon\www\blog-system\images\Login With Validation.png)
+
+![](C:\laragon\www\blog-system\images\login with cred.png)
+
+
+
+![](C:\laragon\www\blog-system\images\Post list.png)
+
+![](C:\laragon\www\blog-system\images\post list with auth.png)
+
+![](C:\laragon\www\blog-system\images\post info with auth.png)
+
+![](C:\laragon\www\blog-system\images\post list without auth.png)
+
+## How to Run the Project
+
+- Prerequisites:
+  - Node.js 18+ (required by Vite 5)
+  - npm
+- Installation:
+  - Clone the repo and install dependencies:
+    ```bash
+    npm install
+    ```
+- Environment configuration:
+  - Create `.env` from `.env.example` and set your API:
+    - Windows (PowerShell): `Copy-Item .env.example .env`
+    - macOS/Linux: `cp .env.example .env`
+  - Configure `VITE_API_URL` (defaults to `http://localhost:8000/api/v1`).
+- Run locally:
+  - Start dev server: `npm run dev`
+  - Lint code: `npm run lint`
+  - Build: `npm run build`
+  - Preview production build: `npm run preview`
+
+### Troubleshooting
+
+- 401 Unauthorized:
+  - Axios interceptor clears auth and redirects to `/login` (`src/config/axis.config.js:30-36`).
+  - Ensure your API issues valid JWTs and CORS is enabled.
+- 404 on fetch:
+  - GET requests with 404 redirect to `/404` (`src/config/axis.config.js:38-43`).
+  - Check `VITE_API_URL` and endpoint paths.
+- 5xx server errors:
+  - Redirects to `/500` (`src/config/axis.config.js:44-49`).
+  - Verify backend availability and logs.
+- Node/version issues:
+  - Use Node 18+ for Vite 5 compatibility.
+- Stale auth/data:
+  - Clear `localStorage` (`token`, `user`) and reload.
+  - React Query caches are invalidated on mutations (e.g., `useCreatePost`/`useDeletePost`).
