@@ -344,7 +344,7 @@ php artisan test --testsuite=Feature
 # Run specific test file
 php artisan test tests/Feature/Post/CreatePostTest.php
 ```
-
+<img src="https://github.com/AbdallahMahmoud443/RawMart-blog-Technical-Assessment-/blob/main/images/testing.PNG?raw=true"/>
 ### Common Troubleshooting
 
 1. **JWT Secret Key Error**: If you encounter JWT errors, run:
