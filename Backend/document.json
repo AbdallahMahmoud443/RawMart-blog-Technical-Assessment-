@@ -1,0 +1,832 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Laravel",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000/api"
+    }
+  ],
+  "paths": {
+    "/v1/comments": {
+      "post": {
+        "operationId": "v1:comments:create",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "CreateComment"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommentsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Comment created successfully"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    },
+    "/v1/posts/create": {
+      "post": {
+        "operationId": "v1:posts:create",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "CreatePost"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    },
+    "/v1/comments/delete/{id}": {
+      "delete": {
+        "operationId": "v1:comments:delete",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "DeleteComment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Comment deleted successfully"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          }
+        }
+      }
+    },
+    "/v1/posts/delete/{id}": {
+      "delete": {
+        "operationId": "v1:posts:delete",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "DeletePost"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Post deleted successfully"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          }
+        }
+      }
+    },
+    "/v1/comments/{post_id}/{id}": {
+      "get": {
+        "operationId": "v1:comments:get",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "GetComment"
+        ],
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "`CommentResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/CommentResource"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "404": {
+            "$ref": "#/components/responses/ModelNotFoundException"
+          }
+        }
+      }
+    },
+    "/v1/posts/{id}": {
+      "get": {
+        "operationId": "v1:posts:get",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "GetPost"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "`PostResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/PostResource"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "$ref": "#/components/responses/ModelNotFoundException"
+          }
+        }
+      }
+    },
+    "/v1/posts": {
+      "get": {
+        "operationId": "v1:posts:list",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "ListPosts"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of `PostResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/PostResource"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/tags": {
+      "get": {
+        "operationId": "v1:tags:list",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "ListTags"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of `TagResource`",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/TagResource"
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "operationId": "v1:auth:login",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "Login"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    },
+    "/v1/auth/signup": {
+      "post": {
+        "operationId": "v1:auth:signup",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "Register"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    },
+    "/v1/comments/update/{id}": {
+      "put": {
+        "operationId": "v1:comments:update",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "UpdateComment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommentsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Comment updated successfully"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    },
+    "/v1/posts/update/{id}": {
+      "put": {
+        "operationId": "v1:posts:update",
+        "summary": "Handle the incoming request",
+        "tags": [
+          "UpdatePost"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/AuthenticationException"
+          },
+          "422": {
+            "$ref": "#/components/responses/ValidationException"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AuthorResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "image"
+        ],
+        "title": "AuthorResource"
+      },
+      "CommentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "author": {
+            "$ref": "#/components/schemas/AuthorResource"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content",
+          "created_at"
+        ],
+        "title": "CommentResource"
+      },
+      "CreateCommentsRequest": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "post_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content",
+          "post_id"
+        ],
+        "title": "CreateCommentsRequest"
+      },
+      "CreatePostRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "body": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 50
+            }
+          }
+        },
+        "required": [
+          "title",
+          "body",
+          "tags"
+        ],
+        "title": "CreatePostRequest"
+      },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginRequest"
+      },
+      "PostResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          },
+          "expire_date": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagResource"
+            }
+          },
+          "author": {
+            "$ref": "#/components/schemas/AuthorResource"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentResource"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "body",
+          "expire_date",
+          "created_at"
+        ],
+        "title": "PostResource"
+      },
+      "SignupRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 255
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8
+          },
+          "confirm_password": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string",
+            "format": "binary",
+            "contentMediaType": "application/octet-stream",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "name",
+          "email",
+          "password",
+          "confirm_password",
+          "image"
+        ],
+        "title": "SignupRequest"
+      },
+      "TagResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "TagResource"
+      },
+      "UpdateCommentsRequest": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content"
+        ],
+        "title": "UpdateCommentsRequest"
+      },
+      "UpdatePostRequest": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "body": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        },
+        "required": [
+          "tags"
+        ],
+        "title": "UpdatePostRequest"
+      }
+    },
+    "responses": {
+      "ValidationException": {
+        "description": "Validation error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Errors overview."
+                },
+                "errors": {
+                  "type": "object",
+                  "description": "A detailed description of each field that failed validation.",
+                  "additionalProperties": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "message",
+                "errors"
+              ]
+            }
+          }
+        }
+      },
+      "ModelNotFoundException": {
+        "description": "Not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Error overview."
+                }
+              },
+              "required": [
+                "message"
+              ]
+            }
+          }
+        }
+      },
+      "AuthenticationException": {
+        "description": "Unauthenticated",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "Error overview."
+                }
+              },
+              "required": [
+                "message"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

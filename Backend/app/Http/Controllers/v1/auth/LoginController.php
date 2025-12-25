@@ -22,7 +22,7 @@ class LoginController extends Controller
             access_token: $token,
             token_type: 'Bearer',
             expires_in: auth()->factory()->getTTL() * 60,
-            statusCode: Response::HTTP_CREATED
+            statusCode: Response::HTTP_OK
         );
     }
 }
