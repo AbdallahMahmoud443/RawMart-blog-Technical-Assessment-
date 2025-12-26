@@ -1,5 +1,7 @@
 # Blog System — Docker Setup & Run Guide
+
 <img src="https://github.com/AbdallahMahmoud443/RawMart-blog-Technical-Assessment-/blob/main/images/Home%20Page.png?raw=true"/>
+
 ## Overview
 - Runs a Laravel 12 backend (PHP 8.4) with MySQL and Redis
 - Includes dedicated queue worker and scheduler containers
