@@ -1,0 +1,90 @@
+services:
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: dockerfile
+    container_name: laravel_app
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Backend:/var/www
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - mysql
+      - redis
+    networks:
+      - app-network
+
+  queue:
+    build:
+      context: ./Backend
+      dockerfile: dockerfile
+    container_name: laravel_queue
+    command: php artisan queue:work redis --tries=3 --timeout=90
+    volumes:
+      - ./Backend:/var/www
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - app-network
+
+  scheduler:
+    build:
+      context: ./Backend
+      dockerfile: dockerfile
+    container_name: laravel_scheduler
+    command: php artisan schedule:work
+    volumes:
+      - ./Backend:/var/www
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: db_blog
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    container_name: react_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
