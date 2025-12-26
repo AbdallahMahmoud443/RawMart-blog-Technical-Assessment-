@@ -1,7 +1,5 @@
 # Blog Platform API
 
-<img src="https://github.com/AbdallahMahmoud443/RawMart-blog-Technical-Assessment-/blob/main/images/6903464216718ad4aeb631.webp?raw=true">
-
 ## Project Idea
 
 Blog Platform API is a robust backend system designed to provide a scalable foundation for blog applications. This RESTful API solves the problem of content management by offering comprehensive functionality for creating, managing, and organizing blog posts with tags and comments.
